@@ -40,13 +40,11 @@
   }
 , "noflo":
   { "components":
-    { "Extractor": "./components/Extractor.coffee"
-    , "Assembler": "./components/Assembler.coffee"
+    {
     }
   , "graphs":
-    { "woute": "./graphs/woute.fbp"
-    , "Extract": "./graphs/Extract.fbp"
-    , "Assemble": "./graphs/Assemble.fbp"
+    { "Woute": "./graphs/Woute.fbp"
+    , "WebserverAdapter": "./graphs/WebserverAdapter.fbp"
     }
   }
 , "scripts":

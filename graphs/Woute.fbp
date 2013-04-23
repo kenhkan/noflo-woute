@@ -1,0 +1,10 @@
+EXPORT=SERVER.LISTEN:LISTEN
+EXPORT=ROUTER.ROUTES:ROUTES
+EXPORT=:OUT
+
+Server(webserver/Server) REQUEST -> IN ParseBody(webserver/BodyParser) OUT -> IN WebserverAdapter(webserverAdapter)
+WebserverAdapter() SID -> IN SessionId(Output)
+WebserverAdapter() REQUEST -> IN Request(Output)
+WebserverAdapter() RESPONSE -> IN Response(Output)
+
+Router(GroupRouter)

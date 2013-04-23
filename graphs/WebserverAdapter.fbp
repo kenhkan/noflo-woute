@@ -1,0 +1,13 @@
+EXPORT=REQUEST.IN:IN
+EXPORT=SESSIONID.OUT:SID
+EXPORT=EXTRACTREQUEST.OUT:REQUEST
+EXPORT=EXTRACTRESPONSE.OUT:RESPONSE
+
+Request(Split) OUT -> IN RequestGroups(groups/Read) OUT -> IN SessionId(packets/First)
+'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$' -> GROUP RemoveSessionId(groups/Remove)
+Request() OUT -> IN RemoveSessionId() OUT -> IN RequestResponseObject(packets/First)
+
+'^req' -> IN RequestPattern(Arrayify) OUT -> PATTERN ExtractRequest(ExtractProperty)
+RequestResponseObject() OUT -> IN ExtractRequest()
+'^res' -> IN ResponsePattern(Arrayify) OUT -> PATTERN ExtractResponse(ExtractProperty)
+RequestResponseObject() OUT -> IN ExtractResponse()

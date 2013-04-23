@@ -16,8 +16,9 @@ Note: All the following examples are written in FBP.
 First, set up a Woute server with an array of URL patterns, which is
 based on [noflo-webserver](https://github.com/bergie/noflo-webserver):
 
+    '8080' -> LISTEN Woute(Woute)
     ',' -> DELIMITER SplitStr()
-    'a/b.+,a/c,.+' -> IN SplitStr() OUT -> ROUTES Woute(Woute)
+    'a/b.+,a/c,.+' -> IN SplitStr() OUT -> ROUTES Woute()
 
 Routes are defined *at once*. The second time Woute's 'ROUTES' port
 receives something, all routes would be replaced. Each data IP
