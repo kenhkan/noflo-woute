@@ -1,13 +1,22 @@
 EXPORT=REQUEST.IN:IN
 EXPORT=SESSIONID.OUT:SID
-EXPORT=EXTRACTREQUEST.OUT:REQUEST
 EXPORT=EXTRACTRESPONSE.OUT:RESPONSE
+EXPORT=REQUESTOBJECT.OUT:REQUEST
+EXPORT=URL.OUT:URL
+EXPORT=EXTRACTBODY.OUT:BODY
 
 Request(Split) OUT -> IN RequestGroups(groups/Read) OUT -> IN SessionId(packets/First)
 '^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$' -> GROUP RemoveSessionId(groups/Remove)
 Request() OUT -> IN RemoveSessionId() OUT -> IN RequestResponseObject(packets/First)
 
 '^req' -> IN RequestPattern(Arrayify) OUT -> PATTERN ExtractRequest(ExtractProperty)
-RequestResponseObject() OUT -> IN ExtractRequest()
+RequestResponseObject() OUT -> IN ExtractRequest() OUT -> IN RequestObject(Split)
 '^res' -> IN ResponsePattern(Arrayify) OUT -> PATTERN ExtractResponse(ExtractProperty)
 RequestResponseObject() OUT -> IN ExtractResponse()
+
+'^url$' -> IN UrlPattern(Arrayify) OUT -> PATTERN ExtractUrl(ExtractProperty)
+'/' -> DELIMITER SplitUrl(SplitStr)
+RequestObject() OUT -> IN ExtractUrl() OUT -> IN SplitUrl() OUT -> IN Url(swiss/Compact)
+
+'^body$' -> IN BodyPattern(Arrayify) OUT -> PATTERN ExtractBody(ExtractProperty)
+RequestObject() OUT -> IN ExtractBody()
