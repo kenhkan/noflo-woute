@@ -1,11 +1,24 @@
 EXPORT=SERVER.LISTEN:LISTEN
-EXPORT=ROUTER.ROUTES:ROUTES
-EXPORT=:OUT
+EXPORT=SPLITROUTES.IN:ROUTES
+EXPORT=ROUTER.OUT:OUT
+
+',' -> DELIMITER SplitRoutes(SplitStr)
+SplitRoutes() OUT -> ROUTES Router(routers/RegexpRouter)
 
 Server(webserver/Server) REQUEST -> IN ParseBody(webserver/BodyParser) OUT -> IN WebserverAdapter(WebserverAdapter)
-WebserverAdapter() SID -> IN SessionId(Output)
-WebserverAdapter() RESPONSE -> IN Response(Output)
-WebserverAdapter() BODY -> IN Body(Output)
-WebserverAdapter() URL -> IN Url(Output)
+WebserverAdapter() RESPONSE -> IN Response()
+WebserverAdapter() URL -> IN UrlSplit(Split)
 
-Router(GroupRouter)
+'4' -> COUNT MergeSections(packets/MergeConnections)
+
+'session-id' -> IN SessionId(Group)
+WebserverAdapter() SID -> IN SessionId() OUT -> IN MergeSections()
+'url' -> IN Url(Group)
+UrlSplit() OUT -> IN Url() OUT -> IN MergeSections()
+'headers' -> IN Headers(Group)
+WebserverAdapter() BODY -> IN Headers() OUT -> IN MergeSections()
+'body' -> IN Body(Group)
+WebserverAdapter() BODY -> IN Body() OUT -> IN MergeSections()
+
+UrlSplit() OUT -> GROUP GroupConnection(groups/Group)
+MergeSections() OUT -> IN GroupConnection() OUT -> IN Router()

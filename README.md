@@ -16,9 +16,8 @@ Note: All the following examples are written in FBP.
 First, set up a Woute server with an array of URL patterns, which is
 based on [noflo-webserver](https://github.com/bergie/noflo-webserver):
 
-    '8080' -> LISTEN Woute(Woute)
-    ',' -> DELIMITER SplitStr()
-    'a/b.+,a/c,.+' -> IN SplitStr() OUT -> ROUTES Woute()
+    '8080' -> LISTEN Woute(woute/Woute)
+    'a/b.+,a/c,.+' -> ROUTES Woute()
 
 Routes are defined *at once*. The second time Woute's 'ROUTES' port
 receives something, all routes would be replaced. Each data IP
@@ -76,17 +75,21 @@ The handler 'AC', in the first example, would then receive:
     GROUP: session-id
       DATA: <SomeRandomSessionIDHere>
     GROUP: url
+      DATA: a
+      DATA: cat
       DATA: something
       DATA: here
     GROUP: headers
-      GROUP: host
-        DATA: example.com
-      GROUP: content-type
-        DATA: application/json; charset=utf-8
-      GROUP: content-length
-        DATA: 23
+      DATA: {
+        Host: example.com
+        Content-Type: application/json; charset=utf-8
+        Content-Length: 23
+      }
     GROUP: body
-      DATA: {\n  "Transaction": "Is it OK?"\n}
+      DATA: { Transaction: "Is it OK?" }
+
+Note that the 'body' and 'headers' data packet contains a JavaScript
+object rather than a JSON string.
 
 #### Sending back a response
 
@@ -100,7 +103,11 @@ An example would be:
     GROUP: session-id
       DATA: <TheGivenSessionIDHere>
     GROUP: headers
-      GROUP: some-return-header
-        DATA: some-header-data
+      DATA: {
+        some-return-header: some-header-data
+      }
     GROUP: body
-      DATA: {\n  "Transaction": "Yes, it is OK."\n}
+      DATA: { Transaction: "Yes, it is OK." }
+
+Note that the 'body' and 'headers' data packet contains a JavaScript
+object rather than a JSON string.
