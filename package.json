@@ -40,7 +40,11 @@
   , "noflo-test": "https://github.com/kenhkan/noflo-test/tarball/master"
   }
 , "noflo":
-  { "graphs":
+  { "components":
+    { "DecodeUri": "./components/DecodeUri.coffee"
+    , "EncodeUri": "./components/EncodeUri.coffee"
+    }
+  , "graphs":
     { "Woute": "./graphs/Woute.fbp"
     , "StringifyUrl": "./graphs/StringifyUrl.fbp"
     , "WebserverAdapter": "./graphs/WebserverAdapter.fbp"

@@ -17,7 +17,7 @@ RequestResponseObject() OUT -> IN ExtractResponse() OUT -> IN RemoveResponseGrou
 
 'url' -> KEY ExtractUrl(objects/ExtractProperty)
 '/' -> DELIMITER SplitUrl(SplitStr)
-RequestObject() OUT -> IN ExtractUrl() OUT -> IN SplitUrl() OUT -> IN Url(swiss/Compact)
+RequestObject() OUT -> IN ExtractUrl() OUT -> IN SplitUrl() OUT -> IN DecodeUri(woute/DecodeUri) OUT -> IN Url(swiss/Compact)
 
 'body' -> KEY ExtractBody(objects/ExtractProperty)
 RequestObject() OUT -> IN ExtractBody()
