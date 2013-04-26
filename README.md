@@ -39,7 +39,7 @@ instance, continuing from the above:
 
 If the definition is somewhat juggled around, however, like:
 
-    'a/b.+,.+,a/c' -> IN SplitStr() OUT -> ROUTES Woute(Woute)
+    'a/b.+,.+,a/c' -> ROUTES Woute(Woute)
 
 Then you would have to write the FBP program as:
 

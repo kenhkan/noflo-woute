@@ -44,6 +44,7 @@
     }
   , "graphs":
     { "Woute": "./graphs/Woute.fbp"
+    , "StringifyUrl": "./graphs/StringifyUrl.fbp"
     , "WebserverAdapter": "./graphs/WebserverAdapter.fbp"
     }
   }

@@ -1,26 +1,26 @@
 EXPORT=REQUEST.IN:IN
 EXPORT=SESSIONID.OUT:SID
-EXPORT=EXTRACTRESPONSE.OUT:RESPONSE
+EXPORT=REMOVERESPONSEGROUP.OUT:RESPONSE
 EXPORT=REQUESTOBJECT.OUT:REQUEST
 EXPORT=URL.OUT:URL
 EXPORT=EXTRACTBODY.OUT:BODY
 EXPORT=EXTRACTHEADERS.OUT:HEADERS
 
-Request(Split) OUT -> IN RequestGroups(groups/Read) OUT -> IN SessionId(packets/First)
+Request(Split) OUT -> IN SessionId(swiss/RandomUuid)
 '^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$' -> GROUP RemoveSessionId(groups/Remove)
-Request() OUT -> IN RemoveSessionId() OUT -> IN RequestResponseObject(packets/First)
+Request() OUT -> IN RemoveSessionId() OUT -> IN FirstInRequest(packets/First) OUT -> IN RequestResponseObject(Split)
 
-'^req' -> IN RequestPattern(Arrayify) OUT -> PATTERN ExtractRequest(objects/ExtractProperty)
+'req' -> KEY ExtractRequest(objects/ExtractProperty)
 RequestResponseObject() OUT -> IN ExtractRequest() OUT -> IN RequestObject(Split)
-'^res' -> IN ResponsePattern(Arrayify) OUT -> PATTERN ExtractResponse(objects/ExtractProperty)
-RequestResponseObject() OUT -> IN ExtractResponse()
+'res' -> KEY ExtractResponse(objects/ExtractProperty)
+RequestResponseObject() OUT -> IN ExtractResponse() OUT -> IN RemoveResponseGroup(groups/Remove)
 
-'^url$' -> IN UrlPattern(Arrayify) OUT -> PATTERN ExtractUrl(objects/ExtractProperty)
+'url' -> KEY ExtractUrl(objects/ExtractProperty)
 '/' -> DELIMITER SplitUrl(SplitStr)
 RequestObject() OUT -> IN ExtractUrl() OUT -> IN SplitUrl() OUT -> IN Url(swiss/Compact)
 
-'^body$' -> IN BodyPattern(Arrayify) OUT -> PATTERN ExtractBody(objects/ExtractProperty)
+'body' -> KEY ExtractBody(objects/ExtractProperty)
 RequestObject() OUT -> IN ExtractBody()
 
-'^headers$' -> IN HeadersPattern(Arrayify) OUT -> PATTERN ExtractHeaders(objects/ExtractProperty)
+'headers' -> KEY ExtractHeaders(objects/ExtractProperty)
 RequestObject() OUT -> IN ExtractHeaders()

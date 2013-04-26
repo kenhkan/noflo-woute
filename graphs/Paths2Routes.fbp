@@ -1,0 +1,5 @@
+EXPORT=SPLITPATHS.IN:IN
+EXPORT=REMOVEALLGROUPS.OUT:OUT
+
+',' -> DELIMITER SplitPaths(SplitStr)
+SplitPaths() OUT -> IN GroupByPath(GroupByPacket) OUT -> IN ArrayifyPaths(String2Array) OUT -> IN RemoveAllGroups(groups/Remove)
