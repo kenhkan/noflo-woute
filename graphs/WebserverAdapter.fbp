@@ -7,7 +7,7 @@ EXPORT=EXTRACTBODY.OUT:BODY
 EXPORT=EXTRACTHEADERS.OUT:HEADERS
 
 Request(Split) OUT -> IN SessionId(swiss/RandomUuid)
-'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$' -> GROUP RemoveSessionId(groups/Remove)
+'^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$' -> REGEXP RemoveSessionId(groups/Remove)
 Request() OUT -> IN RemoveSessionId() OUT -> IN FirstInRequest(packets/First) OUT -> IN RequestResponseObject(Split)
 
 'req' -> KEY ExtractRequest(objects/ExtractProperty)

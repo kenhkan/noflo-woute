@@ -1,18 +1,19 @@
 EXPORT=SERVER.LISTEN:LISTEN
 EXPORT=SPLITROUTES.IN:ROUTES
 EXPORT=ROUTER.OUT:OUT
+EXPORT=RESPONDER.IN:IN
 
 ',' -> DELIMITER SplitRoutes(SplitStr)
 SplitRoutes() OUT -> ROUTES Router(routers/RegexpRouter)
 
 Server(webserver/Server) REQUEST -> IN ParseBody(webserver/BodyParser) OUT -> IN WebserverAdapter(woute/WebserverAdapter)
-WebserverAdapter() RESPONSE -> IN Response(swiss/Trash)
 WebserverAdapter() URL -> IN UrlSplit(Split)
+WebserverAdapter() SID -> IN SidSplit(Split)
 
 MergeSections(packets/MergeConnections)
 
 'session-id' -> GROUP SessionId(Group)
-WebserverAdapter() SID -> IN SessionId() OUT -> IN MergeSections()
+SidSplit() OUT -> IN SessionId() OUT -> IN MergeSections()
 'url' -> GROUP Url(Group)
 UrlSplit() OUT -> IN Url() OUT -> IN MergeSections()
 'headers' -> GROUP Headers(Group)
@@ -22,3 +23,6 @@ WebserverAdapter() BODY -> IN Body() OUT -> IN MergeSections()
 
 UrlSplit() OUT -> IN StringifyUrl(woute/StringifyUrl) OUT -> GROUP GroupConnection(groups/Group)
 MergeSections() OUT -> IN GroupConnection() OUT -> IN Router()
+
+SidSplit() OUT -> KEY Responder(woute/Responder)
+WebserverAdapter() RESPONSE -> RESPONSE Responder()

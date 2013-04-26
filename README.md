@@ -55,9 +55,8 @@ have a '.\*' at the end of your route definition.
 
 #### What is passed on?
 
-The handler with a matching URL would receive a truncated URL starting
-from the end of the matched portion of the URL as well as the headers
-and body of the request.
+The handler with a matching URL would receive the URL, the headers, body
+of the request, and also a random UUID for replying back to the client.
 
 If the request looks like:
 

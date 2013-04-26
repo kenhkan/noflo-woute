@@ -1,0 +1,16 @@
+EXPORT=INPUTSPLIT.IN:IN
+EXPORT=RESPONSES.IN:RESPONSE
+EXPORT=MERGEKEY.IN:KEY
+
+'sid' -> REGEXP FilterSid(groups/FilterByGroup)
+InputSplit(Split) OUT -> IN FilterSid() OUT -> IN MergeKey(Merge) OUT -> KEY Responses(flow/Cache)
+
+'res' -> GROUP GroupResponse(Group)
+'res' -> REGEXP ObjectifyResponse(groups/ObjectifyByGroup)
+Responses() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN WriteResponse(webserver/WriteResponse)
+
+'body' -> REGEXP FilterBody(groups/FilterByGroup)
+InputSplit() OUT -> IN FilterBody() OUT -> IN Jsonify(strings/Jsonify) OUT -> STRING WriteResponse()
+WriteResponse() OUT -> IN SendResponse(webserver/SendResponse)
+
+InputSplit() OUT -> READY Responses()

@@ -32,6 +32,7 @@
   , "noflo-groups": "0.0.x"
   , "noflo-packets": "0.0.x"
   , "noflo-routers": "0.0.x"
+  , "noflo-strings": "0.0.x"
   }
 , "devDependencies":
   { "coffeelint": "*"
@@ -39,13 +40,11 @@
   , "noflo-test": "https://github.com/kenhkan/noflo-test/tarball/master"
   }
 , "noflo":
-  { "components":
-    {
-    }
-  , "graphs":
+  { "graphs":
     { "Woute": "./graphs/Woute.fbp"
     , "StringifyUrl": "./graphs/StringifyUrl.fbp"
     , "WebserverAdapter": "./graphs/WebserverAdapter.fbp"
+    , "Responder": "./graphs/Responder.fbp"
     }
   }
 , "scripts":
