@@ -1,0 +1,17 @@
+EXPORT=INPUT.IN:IN
+EXPORT=BODY.OUT:OUT
+EXPORT=HEADERS.OUT:HEADERS
+EXPORT=SESSIONID.OUT:TOKEN
+EXPORT=URL.OUT:URL
+
+'headers' -> KEY ExtractHeaders(objects/ExtractProperty)
+Input(Split) OUT -> IN ExtractHeaders() OUT -> IN Headers(objects/ObjectToPackets)
+
+'body' -> KEY ExtractBody(objects/ExtractProperty)
+Input() OUT -> IN ExtractBody() OUT -> IN Body(objects/ObjectToPackets)
+
+'session-id' -> KEY ExtractSessionId(objects/ExtractProperty)
+Input() OUT -> IN SessionId()
+
+'url' -> KEY ExtractUrl(objects/ExtractProperty)
+Input() OUT -> IN Url()

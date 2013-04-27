@@ -53,6 +53,16 @@ reached, except of course '.\*' or ''.
 Any unmatched requests are simply ignored. Therefore, it is advised to
 have a '.\*' at the end of your route definition.
 
+If you prefer to pass each route individually, you may also send the
+route to the 'ROUTE' port (as opposed to the 'ROUTES' port).
+
+    'a/b.+' -> ROUTE Woute(Woute)
+    '.+' -> ROUTE Woute()
+    'a/c' -> ROUTE Woute()
+    Woute() OUT -> IN AB(Output)
+    Woute() OUT -> IN Any(Output)
+    Woute() OUT -> IN AC(Output)
+
 #### What is passed on?
 
 The handler with a matching URL would receive the URL, the headers, body
@@ -110,3 +120,43 @@ An example would be:
 
 Note that the 'body' and 'headers' data packet contains a JavaScript
 object rather than a JSON string.
+
+
+Convenient Helpers
+-------------------------------
+
+Because Woute relies on ArrayPort to route the web requests, it is
+inconvenient to output the request not as an object but via individual
+ports (e.g. 'SESSIONID', 'HEADERS', 'BODY', etc) so that the user of
+this module must attach to each port for each handler in the proper
+order.
+
+Instead, two helpers are provided to convert the objects into packets
+via ports. These helpers may be applied after the routing is complete.
+For example:
+
+    '8080' -> LISTEN Woute(woute/Woute)
+    'a,b,c' -> ROUTES Woute()
+    Woute() OUT -> IN DecompressA(woute/Decompress) ...
+    Woute() OUT -> IN DecompressB(woute/Decompress) ...
+    Woute() OUT -> IN DecompressC(woute/Decompress) ...
+
+#### Decompress
+
+The Decompress graph takes the output of Woute (i.e. the request object)
+and isolate each group into its own connection (less the group itself)
+via the corresponding port. Currently, there are four ports:
+
+  * HEADERS
+  * URL
+  * TOKEN
+  * OUT
+
+The TOKEN port outputs the session ID whereas the OUT port emits the
+body of the request.
+
+#### Compress
+
+The Compress graph does the opposite of Decompress. It takes the same
+four ports as in-ports and outputs an object that Woute then takes to
+respond to client.
