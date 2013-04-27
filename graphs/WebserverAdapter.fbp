@@ -1,6 +1,6 @@
 EXPORT=REQUEST.IN:IN
 EXPORT=SESSIONID.OUT:SID
-EXPORT=REMOVERESPONSEGROUP.OUT:RESPONSE
+EXPORT=EXTRACTRESPONSE.OUT:RESPONSE
 EXPORT=REQUESTOBJECT.OUT:REQUEST
 EXPORT=URL.OUT:URL
 EXPORT=EXTRACTBODY.OUT:BODY
@@ -13,7 +13,7 @@ Request() OUT -> IN RemoveSessionId() OUT -> IN FirstInRequest(packets/First) OU
 'req' -> KEY ExtractRequest(objects/ExtractProperty)
 RequestResponseObject() OUT -> IN ExtractRequest() OUT -> IN RequestObject(Split)
 'res' -> KEY ExtractResponse(objects/ExtractProperty)
-RequestResponseObject() OUT -> IN ExtractResponse() OUT -> IN RemoveResponseGroup(groups/Remove)
+RequestResponseObject() OUT -> IN ExtractResponse()
 
 'url' -> KEY ExtractUrl(objects/ExtractProperty)
 '/' -> DELIMITER SplitUrl(SplitStr)
