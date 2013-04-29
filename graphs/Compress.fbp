@@ -2,7 +2,6 @@ EXPORT=OUTPUT.OUT:OUT
 EXPORT=BODY.IN:IN
 EXPORT=HEADERS.IN:HEADERS
 EXPORT=SESSIONID.IN:TOKEN
-EXPORT=URL.IN:URL
 EXPORT=RESPONSE.IN:RESPONSE
 
 'headers' -> GROUP Headers(Group)
@@ -13,9 +12,6 @@ Body() OUT -> IN Output()
 
 'session-id' -> GROUP SessionId(Group)
 SessionId() OUT -> IN Output()
-
-'url' -> GROUP Url(Group)
-Url() OUT -> IN Output()
 
 'response' -> GROUP Response(Group)
 Response() OUT -> IN Output()
