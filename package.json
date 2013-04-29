@@ -49,6 +49,8 @@
     , "StringifyUrl": "./graphs/StringifyUrl.fbp"
     , "WebserverAdapter": "./graphs/WebserverAdapter.fbp"
     , "Responder": "./graphs/Responder.fbp"
+    , "Compress": "./graphs/Compress.fbp"
+    , "Decompress": "./graphs/Decompress.fbp"
     }
   }
 , "scripts":

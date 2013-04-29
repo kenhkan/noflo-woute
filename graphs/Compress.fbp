@@ -3,15 +3,19 @@ EXPORT=BODY.IN:IN
 EXPORT=HEADERS.IN:HEADERS
 EXPORT=SESSIONID.IN:TOKEN
 EXPORT=URL.IN:URL
+EXPORT=RESPONSE.IN:RESPONSE
 
-'headers' -> KEY GroupHeaders(Group)
-GroupHeaders() OUT -> IN PacketizeHeaders(objects/ObjectToPackets) OUT -> IN Output(Merge)
+'headers' -> GROUP Headers(Group)
+Headers() OUT -> IN Output(Merge)
 
-'body' -> KEY GroupBody(Group)
-GroupBody() OUT -> IN PacketizeBody(objects/ObjectToPackets) OUT -> IN Output(Merge)
+'body' -> GROUP Body(Group)
+Body() OUT -> IN Output()
 
-'session-id' -> KEY GroupSessionId(Group)
-GroupSessionId() OUT -> IN Output(Merge)
+'session-id' -> GROUP SessionId(Group)
+SessionId() OUT -> IN Output()
 
-'url' -> KEY GroupUrl(Group)
-GroupUrl() OUT -> IN Output(Merge)
+'url' -> GROUP Url(Group)
+Url() OUT -> IN Output()
+
+'response' -> GROUP Response(Group)
+Response() OUT -> IN Output()

@@ -3,15 +3,19 @@ EXPORT=BODY.OUT:OUT
 EXPORT=HEADERS.OUT:HEADERS
 EXPORT=SESSIONID.OUT:TOKEN
 EXPORT=URL.OUT:URL
+EXPORT=RESPONSE.OUT:RESPONSE
 
-'headers' -> KEY ExtractHeaders(objects/ExtractProperty)
-Input(Split) OUT -> IN ExtractHeaders() OUT -> IN Headers(objects/ObjectToPackets)
+'headers' -> ROUTE Router(routers/GroupRouter)
+Input(Repeat) OUT -> IN Router() OUT -> IN Headers(objects/ObjectToPackets)
 
-'body' -> KEY ExtractBody(objects/ExtractProperty)
-Input() OUT -> IN ExtractBody() OUT -> IN Body(objects/ObjectToPackets)
+'body' -> ROUTE Router()
+Router() OUT -> IN Body(objects/ObjectToPackets)
 
-'session-id' -> KEY ExtractSessionId(objects/ExtractProperty)
-Input() OUT -> IN SessionId()
+'session-id' -> ROUTE Router()
+Router() OUT -> IN SessionId(Repeat)
 
-'url' -> KEY ExtractUrl(objects/ExtractProperty)
-Input() OUT -> IN Url()
+'url' -> ROUTE Router()
+Router() OUT -> IN Url(Repeat)
+
+'response' -> ROUTE Router()
+Router() OUT -> IN Response(Repeat)

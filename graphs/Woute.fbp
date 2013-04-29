@@ -1,11 +1,11 @@
 EXPORT=SERVER.LISTEN:LISTEN
-EXPORT=SPLITROUTES.IN:ROUTES
+EXPORT=SPLITROUTES.IN:ROUTE
 EXPORT=MERGEROUTES.IN:ROUTE
 EXPORT=ROUTER.OUT:OUT
 EXPORT=RESPONDER.IN:IN
 
 ',' -> DELIMITER SplitRoutes(SplitStr)
-SplitRoutes() OUT -> IN MergeRoutes(Merge) OUT -> ROUTES Router(routers/RegexpRouter)
+SplitRoutes() OUT -> IN MergeRoutes(Merge) OUT -> ROUTE Router(routers/RegexpRouter)
 
 Server(webserver/Server) REQUEST -> IN ParseBody(webserver/BodyParser) OUT -> IN WebserverAdapter(woute/WebserverAdapter)
 WebserverAdapter() URL -> IN UrlSplit(Split)
