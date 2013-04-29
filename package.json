@@ -47,7 +47,7 @@
   , "graphs":
     { "Woute": "./graphs/Woute.fbp"
     , "StringifyUrl": "./graphs/StringifyUrl.fbp"
-    , "WebserverAdapter": "./graphs/WebserverAdapter.fbp"
+    , "Receiver": "./graphs/Receiver.fbp"
     , "Responder": "./graphs/Responder.fbp"
     , "Compress": "./graphs/Compress.fbp"
     , "Decompress": "./graphs/Decompress.fbp"
