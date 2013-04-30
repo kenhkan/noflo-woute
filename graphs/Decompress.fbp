@@ -6,10 +6,10 @@ EXPORT=URL.OUT:URL
 EXPORT=RESPONSE.OUT:RESPONSE
 
 'headers' -> ROUTE Router(routers/GroupRouter)
-Input(Repeat) OUT -> IN Router() OUT -> IN Headers(objects/ObjectToPackets)
+Input(Repeat) OUT -> IN Router() OUT -> IN Headers(adapters/ObjectToPackets)
 
 'body' -> ROUTE Router()
-Router() OUT -> IN Body(objects/ObjectToPackets)
+Router() OUT -> IN Body(adapters/ObjectToPackets)
 
 'session-id' -> ROUTE Router()
 Router() OUT -> IN SessionId(Repeat)

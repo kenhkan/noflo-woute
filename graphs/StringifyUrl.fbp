@@ -1,4 +1,4 @@
 EXPORT=STRINGIFYURL.IN:IN
 EXPORT=STRINGIFYURL.OUT:OUT
 
-'/' -> DELIMITER StringifyUrl(packets/PacketsToString)
+'/' -> DELIMITER StringifyUrl(adapters/PacketsToString)
