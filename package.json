@@ -9,7 +9,7 @@
   , "url"
   ]
 , "author": "Kenneth Kan <kenhkan@gmail.com>"
-, "version": "0.0.2"
+, "version": "0.0.3"
 , "licenses":
   [ { "type": "MIT"
     , "url": "https://github.com/kenhkan/noflo-woute/blob/master/LICENSE.md"
@@ -26,7 +26,7 @@
   { "noflo": "https://github.com/kenhkan/noflo/tarball/master"
   , "underscore": "1.4.x"
   , "underscore.string": "2.3.x"
-  , "noflo-webserver": "0.0.x"
+  , "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master"
   , "noflo-swiss": "0.0.x"
   , "noflo-flow": "0.0.x"
   , "noflo-groups": "0.0.x"
