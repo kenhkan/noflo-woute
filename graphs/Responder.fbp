@@ -10,4 +10,6 @@ Input() OUT -> IN FilterResponse()
 FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN WriteResponse(webserver/WriteResponse) OUT -> IN SendResponse(webserver/SendResponse)
 
 'body' -> REGEXP FilterBody(groups/FilterByGroup)
-Input() OUT -> IN FilterBody() OUT -> IN JsonifyJson(strings/Jsonify) OUT -> STRING WriteResponse()
+Input() OUT -> IN FilterBody() OUT -> IN Body(Merge)
+FilterBody() EMPTY -> IN Body()
+Body() OUT -> IN JsonifyJson(strings/Jsonify) OUT -> STRING WriteResponse()
