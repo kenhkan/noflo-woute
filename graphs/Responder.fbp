@@ -1,9 +1,7 @@
 EXPORT=INPUT.IN:IN
 
-Input(swiss/Hub)
-
 'response' -> REGEXP FilterResponse(groups/FilterByGroup)
-Input() OUT -> IN FilterResponse()
+Input(swiss/Hub) OUT -> IN FilterResponse()
 
 'res' -> GROUP GroupResponse(Group)
 'res' -> REGEXP ObjectifyResponse(groups/ObjectifyByGroup)
