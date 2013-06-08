@@ -121,6 +121,12 @@ An example would be:
 Note that the 'body' and 'headers' data packet contains a JavaScript
 object rather than a JSON string.
 
+#### Handling 404s
+
+There is a convenient port 'MISSING' on Woute that echoes what is sent
+to it but responds with status code 404. It is as easy as giving the
+object emitted from 'OUT' straight to 'MISSING'.
+
 
 Convenient Helpers
 -------------------------------

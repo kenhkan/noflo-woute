@@ -1,4 +1,7 @@
 EXPORT=INPUT.IN:IN
+EXPORT=MISSING.IN:MISSING
+
+# Normal responses
 
 'response' -> REGEXP FilterResponse(groups/FilterByGroup)
 Input(swiss/Hub) OUT -> IN FilterResponse()
@@ -11,3 +14,19 @@ FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> 
 Input() OUT -> IN FilterBody() OUT -> IN Body(Merge)
 FilterBody() EMPTY -> IN Body()
 Body() OUT -> IN JsonifyJson(strings/Jsonify) OUT -> STRING WriteResponse()
+
+# Missing responses
+
+'response' -> REGEXP FilterMissingResponse(groups/FilterByGroup)
+Missing(swiss/Hub) OUT -> IN FilterMissingResponse()
+
+'404' -> STATUS SetErrorCode(webserver/WriteHead)
+
+'res' -> GROUP GroupMissingResponse(Group)
+'res' -> REGEXP ObjectifyMissingResponse(groups/ObjectifyByGroup)
+FilterMissingResponse() OUT -> IN GroupMissingResponse() OUT -> IN ObjectifyMissingResponse() OUT -> IN SetErrorCode() OUT -> IN WriteMissingResponse(webserver/WriteResponse) OUT -> IN SendMissingResponse(webserver/SendResponse)
+
+'body' -> REGEXP FilterMissingBody(groups/FilterByGroup)
+Missing() OUT -> IN FilterMissingBody() OUT -> IN MissingBody(Merge)
+FilterMissingBody() EMPTY -> IN MissingBody()
+MissingBody() OUT -> IN JsonifyMissingJson(strings/Jsonify) OUT -> STRING WriteMissingResponse()
