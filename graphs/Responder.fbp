@@ -10,10 +10,11 @@ Input(swiss/Hub) OUT -> IN FilterResponse()
 'res' -> REGEXP ObjectifyResponse(groups/ObjectifyByGroup)
 FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN WriteResponse(webserver/WriteResponse) OUT -> IN SendResponse(webserver/SendResponse)
 
+'true' -> RAW JsonifyOutput(strings/Jsonify)
 'body' -> REGEXP FilterBody(groups/FilterByGroup)
 Input() OUT -> IN FilterBody() OUT -> IN Body(Merge)
 FilterBody() EMPTY -> IN Body()
-Body() OUT -> IN JsonifyJson(strings/Jsonify) OUT -> STRING WriteResponse()
+Body() OUT -> IN JsonifyOutput() OUT -> STRING WriteResponse()
 
 # Missing responses
 
