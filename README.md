@@ -8,7 +8,7 @@ requests similar to Sintra! You simply send in an array of URL patterns
 and attach handler components to it.
 
 
-API
+Usage
 -------------------------------
 
 Note: All the following examples are written in FBP.
@@ -102,24 +102,14 @@ object rather than a JSON string.
 
 #### Sending back a response
 
-Woute never exposes the response object. It much prefers you to pass
-back the data to respond to the client and let it handle the rest for
-you. The session ID is the key that you must retain and return along
-with the response for Woute to work its magic.
+Instead of sending your response to the Woute process, create a
+Responder process and pass an object following the structure of that
+emitted by the Woute component.
 
-An example would be:
+    Woute(woute/Woute) OUT -> IN Responder(woute/Responder)
 
-    GROUP: session-id
-      DATA: <TheGivenSessionIDHere>
-    GROUP: headers
-      DATA: {
-        some-return-header: some-header-data
-      }
-    GROUP: body
-      DATA: { Transaction: "Yes, it is OK." }
-
-Note that the 'body' and 'headers' data packet contains a JavaScript
-object rather than a JSON string.
+Note that the 'body' and 'headers' data packet should contain a
+JavaScript object rather than a JSON string.
 
 #### Handling 404s
 
