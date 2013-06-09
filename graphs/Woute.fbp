@@ -2,8 +2,6 @@ EXPORT=SERVER.LISTEN:LISTEN
 EXPORT=SPLITROUTES.IN:ROUTES
 EXPORT=MERGEROUTES.IN:ROUTE
 EXPORT=ROUTER.OUT:OUT
-EXPORT=RESPONDER.IN:IN
-EXPORT=RESPONDER.MISSING:MISSING
 
 ',' -> DELIMITER SplitRoutes(SplitStr)
 '^(.*)$' -> PATTERN AddCaret(Replace)
@@ -13,10 +11,8 @@ SplitRoutes() OUT -> IN MergeRoutes(Merge) OUT -> IN AddCaret() OUT -> ROUTE Rou
 Server(webserver/Server) REQUEST -> IN ParseBody(webserver/BodyParser) OUT -> IN Receiver(woute/Receiver)
 Receiver() URL -> IN UrlSplit(Split)
 
-MergeSections(packets/MergeConnections)
-
 'session-id' -> GROUP SessionId(Group)
-Receiver() SID -> IN SessionId() OUT -> IN MergeSections()
+Receiver() SID -> IN SessionId() OUT -> IN MergeSections(packets/MergeConnections)
 'url' -> GROUP Url(Group)
 UrlSplit() OUT -> IN Url() OUT -> IN MergeSections()
 'headers' -> GROUP Headers(Group)
@@ -28,5 +24,3 @@ Receiver() RESPONSE -> IN Response() OUT -> IN MergeSections()
 
 UrlSplit() OUT -> IN StringifyUrl(woute/StringifyUrl) OUT -> GROUP GroupConnection(groups/Group)
 MergeSections() OUT -> IN GroupConnection() OUT -> IN Router()
-
-Responder(woute/Responder)

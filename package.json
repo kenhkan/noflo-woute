@@ -44,6 +44,7 @@
   { "components":
     { "DecodeUri": "./components/DecodeUri.coffee"
     , "EncodeUri": "./components/EncodeUri.coffee"
+    , "ResolvePath": "./components/ResolvePath.coffee"
     }
   , "graphs":
     { "Woute": "./graphs/Woute.fbp"
