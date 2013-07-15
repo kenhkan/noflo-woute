@@ -5,6 +5,7 @@ EXPORT=REQUESTOBJECT.OUT:REQUEST
 EXPORT=URL.OUT:URL
 EXPORT=EXTRACTBODY.OUT:BODY
 EXPORT=EXTRACTHEADERS.OUT:HEADERS
+EXPORT=EXTRACTQUERY.OUT:QUERY
 
 Request(Split) OUT -> IN SessionId(swiss/RandomUuid)
 '../config/session_id_format.txt' -> IN SessionIdFormatPath(woute/ResolvePath) OUT -> IN ReadSessionIdFormat(ReadFile) OUT -> REGEXP RemoveSessionId(groups/RemoveGroups)
@@ -24,3 +25,6 @@ RequestObject() OUT -> IN ExtractBody()
 
 'headers' -> KEY ExtractHeaders(objects/ExtractProperty)
 RequestObject() OUT -> IN ExtractHeaders()
+
+'query' -> KEY ExtractQuery(objects/ExtractProperty)
+RequestObject() OUT -> IN ExtractQuery()
