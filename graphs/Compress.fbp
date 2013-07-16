@@ -4,8 +4,10 @@ EXPORT=HEADERS.IN:HEADERS
 EXPORT=SESSIONID.IN:TOKEN
 EXPORT=RESPONSE.IN:RESPONSE
 
+'4' -> THRESHOLD Output(flow/CountedMerge)
+
 'headers' -> GROUP Headers(Group)
-Headers() OUT -> IN Output(Merge)
+Headers() OUT -> IN Output()
 
 'body' -> GROUP Body(Group)
 Body() OUT -> IN Output()
