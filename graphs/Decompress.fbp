@@ -4,6 +4,7 @@ EXPORT=HEADERS.OUT:HEADERS
 EXPORT=SESSIONID.OUT:TOKEN
 EXPORT=URL.OUT:URL
 EXPORT=RESPONSE.OUT:RESPONSE
+EXPORT=QUERY.OUT:QUERY
 
 'headers' -> ROUTE Router(routers/GroupRouter)
 Input(Repeat) OUT -> IN Router() OUT -> IN Headers(adapters/ObjectToPackets)
@@ -19,3 +20,6 @@ Router() OUT -> IN Url(Repeat)
 
 'response' -> ROUTE Router()
 Router() OUT -> IN Response(Repeat)
+
+'query' -> ROUTE Router()
+Router() OUT -> IN Query(Repeat)

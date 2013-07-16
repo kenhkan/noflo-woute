@@ -141,12 +141,17 @@ For example:
 
 The Decompress graph takes the output of Woute (i.e. the request object)
 and isolate each group into its own connection (less the group itself)
-via the corresponding port. Currently, there are four ports:
+via the corresponding port. Currently, these ports are supported:
 
+  * RESPONSE
   * HEADERS
-  * URL
   * TOKEN
   * OUT
+
+And these ports are not available in Compress:
+
+  * QUERY
+  * URL
 
 The TOKEN port outputs the session ID whereas the OUT port emits the
 body of the request.
