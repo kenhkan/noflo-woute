@@ -3,12 +3,18 @@ EXPORT=MISSING.IN:MISSING
 
 # Normal responses
 
+'200' -> STRING StatusCode(SendString)
+
+'headers' -> REGEXP FilterHeaders(groups/FilterByGroup)
+Input(swiss/Hub) OUT -> IN FilterHeaders() OUT -> IN SplitHeaders(Split) OUT -> HEADERS WriteHead(webserver/WriteHead)
+SplitHeaders() OUT -> IN StatusCode() OUT -> STATUS WriteHead()
+
 'response' -> REGEXP FilterResponse(groups/FilterByGroup)
 Input(swiss/Hub) OUT -> IN FilterResponse()
 
 'res' -> GROUP GroupResponse(Group)
 'res' -> REGEXP ObjectifyResponse(groups/ObjectifyByGroup)
-FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN WriteResponse(webserver/WriteResponse) OUT -> IN SendResponse(webserver/SendResponse)
+FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN WriteHead() OUT -> IN WriteResponse(webserver/WriteResponse) OUT -> IN SendResponse(webserver/SendResponse)
 
 'true' -> RAW JsonifyOutput(strings/Jsonify)
 'body' -> REGEXP FilterBody(groups/FilterByGroup)
