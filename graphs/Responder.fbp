@@ -3,19 +3,30 @@ EXPORT=MISSING.IN:MISSING
 
 # Normal responses
 
-'200' -> STRING StatusCode(SendString)
+# Set status code
+'200' -> DEFAULT SetStatusCode(packets/Defaults)
+'status' -> REGEXP FilterStatus(groups/FilterByGroup)
+Input(swiss/Hub) OUT -> IN FilterStatus() OUT -> IN SetStatusCode() OUT -> STRING StatusCode(SendString)
 
+# Set headers
 'headers' -> REGEXP FilterHeaders(groups/FilterByGroup)
-Input(swiss/Hub) OUT -> IN FilterHeaders() OUT -> IN SplitHeaders(Split) OUT -> HEADERS WriteHead(webserver/WriteHead)
+Input(swiss/Hub) OUT -> IN FilterHeaders() OUT -> IN ObjectifyHeaders(adapters/PacketsToObject) OUT -> IN SplitHeaders(Split) OUT -> HEADERS WriteHead(webserver/WriteHead)
 SplitHeaders() OUT -> IN StatusCode() OUT -> STATUS WriteHead()
+SplitHeaders() OUT -> READY CacheResponse(flow/Cache)
 
+# Take out the response object
 'response' -> REGEXP FilterResponse(groups/FilterByGroup)
 Input(swiss/Hub) OUT -> IN FilterResponse()
 
+# Prepare the response for return
 'res' -> GROUP GroupResponse(Group)
 'res' -> REGEXP ObjectifyResponse(groups/ObjectifyByGroup)
-FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN WriteHead() OUT -> IN WriteResponse(webserver/WriteResponse) OUT -> IN SendResponse(webserver/SendResponse)
+FilterResponse() OUT -> IN GroupResponse() OUT -> IN ObjectifyResponse() OUT -> IN CacheResponse(flow/Cache)
 
+# The return payload
+CacheResponse() OUT -> IN WriteHead() OUT -> IN WriteResponse(webserver/WriteResponse) OUT -> IN SendResponse(webserver/SendResponse)
+
+# Prepare the body for return
 'true' -> RAW JsonifyOutput(strings/Jsonify)
 'body' -> REGEXP FilterBody(groups/FilterByGroup)
 Input() OUT -> IN FilterBody() OUT -> IN Body(Merge)
