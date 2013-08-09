@@ -2,10 +2,8 @@ noflo = require 'noflo'
 unless noflo.isBrowser()
   chai = require 'chai' unless chai
   FromGroups = require '../components/FromGroups.coffee'
-  _ = require 'underscore'
 else
   FromGroups = require 'woute/components/FromGroups.js'
-  _ = require 'underscore'
 
 describe 'FromGroups component', ->
   globals = {}
