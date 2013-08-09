@@ -85,8 +85,9 @@ Both adapters break the request/response object into these areas:
 * response: the response object
 
 'ToGroups' converts the outcoming request/response object into the
-listed areas grouped by the names. 'ToPorts' converts the object into
-the areas via ports by those names.
+listed areas grouped by the names. Groups are constructed and sent in
+the order of the list above. 'ToPorts' converts the object into the
+areas via ports by those names.
 
 For instance, out comes from port 'ToGroups' within a single connection:
 
@@ -111,7 +112,7 @@ For 'ToPorts', the same data packets would be sent to ports 'URL',
 'ToGroups' and 'ToPorts' retain the all groups emitted from
 noflo-webserver.
 
-### Putting things back
+### Preparing for response
 
 When you are done and are ready to send back a response, remember to
 feed your content to their counterparts: 'woute/FromGroups' and
