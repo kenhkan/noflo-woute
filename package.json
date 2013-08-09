@@ -1,62 +1,70 @@
-{ "name": "noflo-woute"
-, "description": "Routing web requests based on the request's URL"
-, "keywords":
-  [ "noflo"
-  , "routing"
-  , "web"
-  , "http"
-  , "request"
-  , "url"
-  ]
-, "author": "Kenneth Kan <kenhkan@gmail.com>"
-, "version": "0.0.11"
-, "licenses":
-  [ { "type": "MIT"
-    , "url": "https://github.com/kenhkan/noflo-woute/blob/master/LICENSE.md"
+{
+  "name": "noflo-woute",
+  "description": "Routing web requests based on the request's URL",
+  "keywords": [
+    "noflo",
+    "routing",
+    "web",
+    "http",
+    "request",
+    "url"
+  ],
+  "author": "Kenneth Kan <kenhkan@gmail.com>",
+  "version": "0.0.11",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/kenhkan/noflo-woute/blob/master/LICENSE.md"
     }
-  ]
-, "engines":
-  { "node": ">=0.6.0"
-  }
-, "repository":
-  { "type": "git"
-  , "url": "git://github.com/kenhkan/noflo-woute"
-  }
-, "dependencies":
-  { "noflo": "https://github.com/kenhkan/noflo/tarball/master"
-  , "underscore": "1.4.x"
-  , "underscore.string": "2.3.x"
-  , "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master"
-  , "noflo-swiss": "0.0.x"
-  , "noflo-flow": "0.0.x"
-  , "noflo-groups": "0.0.x"
-  , "noflo-packets": "0.0.x"
-  , "noflo-routers": "0.0.x"
-  , "noflo-strings": "0.0.x"
-  , "noflo-objects": "0.0.x"
-  }
-, "devDependencies":
-  { "coffeelint": "*"
-  , "coffee-script": "1.6.x"
-  , "noflo-test": "https://github.com/kenhkan/noflo-test/tarball/master"
-  }
-, "noflo":
-  { "components":
-    { "DecodeUri": "./components/DecodeUri.coffee"
-    , "EncodeUri": "./components/EncodeUri.coffee"
-    , "ResolvePath": "./components/ResolvePath.coffee"
+  ],
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kenhkan/noflo-woute"
+  },
+  "dependencies": {
+    "noflo": "~0.3.3",
+    "underscore.string": "2.3.x",
+    "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master",
+    "noflo-swiss": "0.0.x",
+    "noflo-flow": "0.0.x",
+    "noflo-groups": "0.0.x",
+    "noflo-packets": "0.0.x",
+    "noflo-routers": "0.0.x",
+    "noflo-strings": "0.0.x",
+    "noflo-objects": "0.0.x",
+    "underscore": "~1.5.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.6.6",
+    "grunt-coffeelint": "~0.0.6",
+    "grunt-cafe-mocha": "~0.1.2",
+    "chai": "~1.5.0",
+    "mocha": "~1.9.0",
+    "grunt-mocha-phantomjs": "~0.2.2",
+    "grunt-component-build": "~0.2.7",
+    "grunt-contrib-uglify": "~0.2.0",
+    "grunt-contrib-watch": "~0.3.1",
+    "component-json": "~0.1.4",
+    "grunt-combine": "~0.8.3",
+    "grunt-component": "~0.1.2"
+  },
+  "noflo": {
+    "components": {
+      "DecodeUri": "./components/DecodeUri.coffee",
+      "EncodeUri": "./components/EncodeUri.coffee",
+      "ResolvePath": "./components/ResolvePath.coffee"
+    },
+    "graphs": {
+      "Woute": "./graphs/Woute.fbp",
+      "StringifyUrl": "./graphs/StringifyUrl.fbp",
+      "Receiver": "./graphs/Receiver.fbp",
+      "Responder": "./graphs/Responder.fbp",
+      "Compress": "./graphs/Compress.fbp",
+      "Decompress": "./graphs/Decompress.fbp"
     }
-  , "graphs":
-    { "Woute": "./graphs/Woute.fbp"
-    , "StringifyUrl": "./graphs/StringifyUrl.fbp"
-    , "Receiver": "./graphs/Receiver.fbp"
-    , "Responder": "./graphs/Responder.fbp"
-    , "Compress": "./graphs/Compress.fbp"
-    , "Decompress": "./graphs/Decompress.fbp"
-    }
-  }
-, "scripts":
-  { "pretest": "./node_modules/.bin/coffeelint -r components"
-  , "test": "./node_modules/.bin/noflo-test --spec test/*.coffee"
   }
 }
