@@ -10,15 +10,10 @@
     "noflo/noflo": "*"
   },
   "scripts": [
-    "components/DoSomething.coffee",
     "index.js"
   ],
   "json": [
     "component.json"
   ],
-  "noflo": {
-    "components": {
-      "DoSomething": "components/DoSomething.coffee"
-    }
-  }
+  "noflo": {}
 }

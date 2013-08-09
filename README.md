@@ -107,11 +107,9 @@ For instance, out comes from port 'ToGroups' within a single connection:
     ENDGROUP: RESPONSE
 
 For 'ToPorts', the same data packets would be sent to ports 'URL',
-'HEADERS', 'QUERY', 'BODY', and 'RESPONSE', respectively. However,
-because now the response is disassociated from the request, we need to
-somehow link them to reassemble them before sending the response back.
-To resolve that issue, data packets for each port are enclosed by a
-group in the format of `response-id:<SomeRandomIdHere>`.
+'HEADERS', 'QUERY', 'BODY', and 'RESPONSE', respectively. Both
+'ToGroups' and 'ToPorts' retain the all groups emitted from
+noflo-webserver.
 
 ### Putting things back
 
