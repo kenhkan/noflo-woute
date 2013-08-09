@@ -27,14 +27,6 @@
   "dependencies": {
     "noflo": "~0.3.3",
     "underscore.string": "2.3.x",
-    "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master",
-    "noflo-swiss": "0.0.x",
-    "noflo-flow": "0.0.x",
-    "noflo-groups": "0.0.x",
-    "noflo-packets": "0.0.x",
-    "noflo-routers": "0.0.x",
-    "noflo-strings": "0.0.x",
-    "noflo-objects": "0.0.x",
     "underscore": "~1.5.1"
   },
   "devDependencies": {
