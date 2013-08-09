@@ -1,6 +1,5 @@
 querystring = require 'querystring'
 noflo = require 'noflo'
-_ = require 'underscore'
 
 class ToPorts extends noflo.Component
   constructor: ->

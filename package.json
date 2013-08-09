@@ -25,9 +25,7 @@
     "url": "git://github.com/kenhkan/noflo-woute"
   },
   "dependencies": {
-    "noflo": "~0.4.0",
-    "underscore.string": "2.3.x",
-    "underscore": "~1.5.1"
+    "noflo": "~0.4.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
