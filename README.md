@@ -128,10 +128,10 @@ The components take these types of data packets:
 * body: the body to be sent back
 * reqres: the request/response object
 
-Note that only the response object is required. This implies response
-object needs to be the last of these packets to hit the adapter.
-Otherwise, the adapter would have no clue when to apply these on the
-response object.
+Note that only the response object is required. This implies that for
+'ToPorts', the request/response object needs to be the last of these
+packets to hit the adapter.  Otherwise, the adapter would have no clue
+when to apply these on the response object.
 
 ### Notes
 
