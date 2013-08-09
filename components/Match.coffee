@@ -4,6 +4,7 @@ class Match extends noflo.Component
   constructor: ->
     @matches = null
     @methods = null
+    @groups = null
 
     @inPorts =
       in: new noflo.Port 'object'
@@ -21,12 +22,15 @@ class Match extends noflo.Component
       @methods ?= []
       @methods.push method.toLowerCase()
 
+    @inPorts.in.on 'connect', =>
+      @groups = []
     @inPorts.in.on 'begingroup', (group) =>
-      @outPorts.out.beginGroup group
+      @groups.push group
     @inPorts.in.on 'endgroup', (group) =>
-      @outPorts.out.endGroup group
+      @groups.pop()
     @inPorts.in.on 'disconnect', =>
       @outPorts.out.disconnect()
+      @outPorts.fail.disconnect()
 
     @inPorts.in.on 'data', (data) =>
       success = true
@@ -46,8 +50,15 @@ class Match extends noflo.Component
 
       # If all pass, forward to OUT; FAIL otherwise
       if success
-        @outPorts.out.send data
+        @output 'out', data
       else
-        @outPorts.fail.send data
+        @output 'fail', data
+
+  output: (portName, data) ->
+    port = @outPorts[portName]
+
+    port.beginGroup group for group in @groups
+    port.send data
+    port.endGroup() for group in @groups
 
 exports.getComponent = -> new Match
