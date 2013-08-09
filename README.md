@@ -117,17 +117,22 @@ noflo-webserver.
 When you are done and are ready to send back a response, remember to
 feed your content to their counterparts: 'woute/FromGroups' and
 'woute/FromPorts'. These two components take the disassembled data
-packets and splice them back into a request/response object so it's
-ready to be sent to
+packets, apply them on a response object, and splice back into
+request/repsonse pair so it's ready to be sent to
 [webserver/SendResponse](https://github.com/noflo/noflo-webserver/blob/master/components/SendResponse.coffee).
 
 The components take these types of data packets:
 
-* headers: the response headers to be sent back
-* body: the body to be sent back
-* response: the response object
+* status: the status code to set. Default to 200
+* headers: the response headers to be sent back. Default to no custom
+  headers
+* body: the body to be sent back. Default to empty body
+* response: the response object. Required
 
-Note the *all* these need to be sent back for reassembly to take place.
+Note the all but the response object is required. This implies response
+object needs to be the last of these packets to hit the adapter.
+Otherwise, the adapter would have no clue when to apply these on the
+response object.
 
 ### Notes
 
