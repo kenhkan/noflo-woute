@@ -36,7 +36,7 @@ describe 'ToGroups component', ->
           body: 'some body'
 
     it 'converts the incoming request/response object into five distinct groups', (done) ->
-      expectedGroups = ['url', 'headers', 'query', 'body', 'response']
+      expectedGroups = ['url', 'headers', 'query', 'body', 'reqres']
       currentGroup = null
       request =
         res:
@@ -52,7 +52,7 @@ describe 'ToGroups component', ->
         request.req.headers
         { 'username': 'password' }
         'some body'
-        request.res
+        request
       ]
 
       globals.out.on 'begingroup', (group) ->

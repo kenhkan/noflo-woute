@@ -27,7 +27,6 @@ class ToGroups extends noflo.Component
 
       headers = data.req.headers
       body = data.req.body
-      response = data.res
 
       # Group these distinct parts
       @outPorts.out.beginGroup 'url'
@@ -46,8 +45,8 @@ class ToGroups extends noflo.Component
       @outPorts.out.send body
       @outPorts.out.endGroup()
 
-      @outPorts.out.beginGroup 'response'
-      @outPorts.out.send response
+      @outPorts.out.beginGroup 'reqres'
+      @outPorts.out.send data
       @outPorts.out.endGroup()
 
 exports.getComponent = -> new ToGroups

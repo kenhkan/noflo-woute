@@ -11,7 +11,7 @@ class ToPorts extends noflo.Component
       headers: new noflo.Port 'object'
       query: new noflo.Port 'object'
       body: new noflo.Port 'object'
-      response: new noflo.Port 'object'
+      reqres: new noflo.Port 'object'
 
     @inPorts.in.on 'begingroup', (group) =>
       @sendToAll 'beginGroup', group
@@ -31,13 +31,12 @@ class ToPorts extends noflo.Component
 
       headers = data.req.headers
       body = data.req.body
-      response = data.res
 
       @outPorts.url.send url
       @outPorts.headers.send headers
       @outPorts.query.send query
       @outPorts.body.send body
-      @outPorts.response.send response
+      @outPorts.reqres.send data
 
   sendToAll: (operation, packet) ->
     for name, port of @outPorts
