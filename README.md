@@ -196,6 +196,8 @@ File not found:
     Date: Sat, 10 Aug 2013 08:35:04 GMT
     Connection: keep-alive
 
+To look at how these work, read the [FBP code](https://github.com/kenhkan/noflo-woute/blob/master/examples/echo_server/graphs/main.fbp).
+
 
 ## TODO
 
