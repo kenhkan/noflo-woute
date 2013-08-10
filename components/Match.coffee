@@ -29,8 +29,8 @@ class Match extends noflo.Component
     @inPorts.in.on 'endgroup', (group) =>
       @groups.pop()
     @inPorts.in.on 'disconnect', =>
-      @outPorts.out.disconnect()
-      @outPorts.fail.disconnect()
+      @outPorts.out.disconnect() if @outPorts.out.isAttached()
+      @outPorts.fail.disconnect() if @outPorts.fail.isAttached()
 
     @inPorts.in.on 'data', (data) =>
       success = true
@@ -38,7 +38,7 @@ class Match extends noflo.Component
       # Match HTTP methods
       if @methods?
         method = data.req.method.toLowerCase()
-        success = false unless @methods.indexOf method > -1
+        success = false unless @methods.indexOf(method) > -1
 
       # Match URL
       if @matches

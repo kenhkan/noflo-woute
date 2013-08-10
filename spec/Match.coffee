@@ -94,6 +94,18 @@ describe 'Match component', ->
       globals.method.send 'post'
       globals.in.send request
 
+    it 'fails on non-matching method', (done) ->
+      request =
+        req:
+          method: 'POST'
+
+      globals.fail.on 'data', (data) ->
+        chai.expect(data).to.deep.equal request
+        done()
+
+      globals.method.send 'get'
+      globals.in.send request
+
     it 'matches multiple HTTP methods', (done) ->
       request =
         req:

@@ -31,14 +31,15 @@ class ToPorts extends noflo.Component
       headers = data.req.headers
       body = data.req.body
 
-      @outPorts.url.send url
-      @outPorts.headers.send headers
-      @outPorts.query.send query
-      @outPorts.body.send body
-      @outPorts.reqres.send data
+      @outPorts.url.send url if @outPorts.url.isAttached()
+      @outPorts.headers.send headers if @outPorts.headers.isAttached()
+      @outPorts.query.send query if @outPorts.query.isAttached()
+      @outPorts.body.send body if @outPorts.body.isAttached()
+      @outPorts.reqres.send data if @outPorts.reqres.isAttached()
 
   sendToAll: (operation, packet) ->
     for name, port of @outPorts
-      port[operation] packet
+      if port.isAttached()
+        port[operation] packet
 
 exports.getComponent = -> new ToPorts
