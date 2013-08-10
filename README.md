@@ -14,35 +14,35 @@ programmer wants, which hopefully produces some result to be sent to a
 responder. An abstract example would be:
 
     
-                          /login                /get_images
-                            +                      +
-                            |                      |
-                            |                      |
-   +-----------+        +---v-------+         +----v------+           +------------+
-   |           |        |           |         |           |           |            |
-   |           |  Req   |  First    |  Fail   |  Second   |  Fail     |  Third     |
-   | Webserver +-------->  Matcher  +--------->  Matcher  +----------->  Matcher   |
-   |           |        |           |         |           |           |            |
-   +-----------+        +---+-------+         +----+------+           +---+--------+
-                            |                      |                      |
-                            |Success               |Success               |Success
-                            |                      |                      |
-                        +---v-------+         +----v------+           +---v--------+
-                        |           |         |           |           |            |
-                        |           |         |           |           |            |
-                        |           |         | Fetch     |           |            |
-                        | Login     |         | Images    |           | 404        |
-                        |           |         |           |           |            |
-                        +-----+-----+         +----+------+           +---+--------+
-                              |                    |                      |
-                              |                    |Res                   |
-                              |Res                 |                      |Res
-                              |               +----v------+               |
-                              |               |           |               |
-                              +--------------->           <---------------+
-                                              | Respond   |
-                                              |           |
-                                              +-----------+
+                           /login                /get_images
+                             +                      +
+                             |                      |
+                             |                      |
+    +-----------+        +---v-------+         +----v------+           +------------+
+    |           |        |           |         |           |           |            |
+    |           |  Req   |  First    |  Fail   |  Second   |  Fail     |  Third     |
+    | Webserver +-------->  Matcher  +--------->  Matcher  +----------->  Matcher   |
+    |           |        |           |         |           |           |            |
+    +-----------+        +---+-------+         +----+------+           +---+--------+
+                             |                      |                      |
+                             |Success               |Success               |Success
+                             |                      |                      |
+                         +---v-------+         +----v------+           +---v--------+
+                         |           |         |           |           |            |
+                         |           |         |           |           |            |
+                         |           |         | Fetch     |           |            |
+                         | Login     |         | Images    |           | 404        |
+                         |           |         |           |           |            |
+                         +-----+-----+         +----+------+           +---+--------+
+                               |                    |                      |
+                               |                    |Res                   |
+                               |Res                 |                      |Res
+                               |               +----v------+               |
+                               |               |           |               |
+                               +--------------->           <---------------+
+                                               | Respond   |
+                                               |           |
+                                               +-----------+
 
 
 ## Installation
