@@ -1,5 +1,5 @@
 {
-  "name": "echo-server",
+  "name": "echo",
   "description": "An echo server using noflo-woute",
   "author": "Kenneth Kan <kenhkan@gmail.com>",
   "repo": "kenhkan/echo-server",
