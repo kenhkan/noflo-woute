@@ -167,6 +167,35 @@ approaches have pros and cons, hence the options.
 
 ## Examples
 
+### Echo Server
+
+Run the server:
+
+    > cd examples/echo_server
+    > npm install
+    > npm run-script main
+
+Get back exactly what you pass in:
+
+    > curl "http://localhost:1337/echo" -d '{"a":"b"}' -H "Content-Type: application/json"
+    {"a":"b"}
+
+Get back the string 'empty-body':
+
+    > curl "http://localhost:1337/empty-body" -d '{"a":"b"}' -H "Content-Type: application/json"
+    empty-body
+
+Print to console of incoming body, but get nothing in return:
+
+    > curl "http://localhost:1337/anything-here" -X POST -d '{"a":"b"}' -H "Content-Type: application/json"
+
+File not found:
+
+    > curl "http://localhost:1337/abc" -I
+    HTTP/1.1 404 Not Found
+    Date: Sat, 10 Aug 2013 08:35:04 GMT
+    Connection: keep-alive
+
 
 ## TODO
 
