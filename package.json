@@ -26,7 +26,9 @@
   },
   "dependencies": {
     "noflo": "~0.4.0",
-    "underscore": "~1.5.1"
+    "underscore": "~1.5.1",
+    "noflo-webserver": "0.0.2",
+    "noflo-core": "~0.1.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -45,7 +47,11 @@
   },
   "noflo": {
     "components": {
-      "Match": "./components/Match.coffee"
+      "Match": "./components/Match.coffee",
+      "FromPorts": "./components/FromPorts.coffee",
+      "FromGroups": "./components/FromGroups.coffee",
+      "ToPorts": "./components/ToPorts.coffee",
+      "ToGroups": "./components/ToGroups.coffee"
     }
   }
 }
