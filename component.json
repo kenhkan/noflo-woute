@@ -1,8 +1,8 @@
 {
-  "name": "test",
-  "description": "The best project ever.",
+  "name": "noflo-woute",
+  "description": "Routing web requests based on the request's URL",
   "author": "Kenneth Kan <kenhkan@gmail.com>",
-  "repo": "kenhkan/test",
+  "repo": "kenhkan/noflo-woute",
   "version": "0.1.0",
   "keywords": [
   ],
