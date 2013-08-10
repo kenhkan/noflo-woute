@@ -154,7 +154,9 @@ approaches have pros and cons, hence the options.
 
 ### Notes
 
-Remember to apply any desired
-[middleware](https://github.com/noflo/noflo-webserver/tree/master/components)
-before passing the request/response object from webserver to any
-matcher.
+* In order to use the 'BODY' port, you need to run the request through
+  [webserver/BodyParser](https://github.com/noflo/noflo-webserver/blob/master/components/BodyParser.coffee)
+* Remember to apply any desired
+  [middleware](https://github.com/noflo/noflo-webserver/tree/master/components)
+  before passing the request/response object from webserver to any
+  matcher.
