@@ -128,10 +128,29 @@ The components take these types of data packets:
 * body: the body to be sent back
 * reqres: the request/response object
 
-Note that only the response object is required. This implies that for
-'ToPorts', the request/response object needs to be the last of these
-packets to hit the adapter.  Otherwise, the adapter would have no clue
-when to apply these on the response object.
+### Which way is best?
+
+'ToPorts' makes the HTTP request much more manageable as it breaks down
+the main parts of an HTTP request into separate connections. However,
+there is a down side: you need to be careful when asynchronous operation
+is involved.
+
+Asynchronous operation "breaks" the stream of these connections,
+rendering 'FromPorts' unable to splice them back into a request/response
+object. Yes, noflo-webserver does wrap the request around with a unique
+UUID, but noflo-woute ignores that. It is the responsibility of the
+programmer or a different package built on top of noflo-woute to handle
+asynchronicity.
+
+Also, 'ToPorts' triggers the re-assembly of the request/response object
+as soon as it receives a request/response object because it would
+otherwise not when to apply the packets on the response object.
+
+'ToGroups' on the other hand puts everything within the same connection
+so there isn't any synchronicity problem as you pass the entire object
+around all at once. However, every time you need to find what you want
+and manipulate it, you need to weed through all the groups. Both
+approaches have pros and cons, hence the options.
 
 ### Notes
 
