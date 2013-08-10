@@ -152,11 +152,20 @@ around all at once. However, every time you need to find what you want
 and manipulate it, you need to weed through all the groups. Both
 approaches have pros and cons, hence the options.
 
-### Notes
+
+## Gotchas
 
 * In order to use the 'BODY' port, you need to run the request through
   [webserver/BodyParser](https://github.com/noflo/noflo-webserver/blob/master/components/BodyParser.coffee)
+* 'FromPorts' and 'FromGroups' expect the body to be a string. You must
+  JSONify or perform any conversion before feeding the body to the two
+  components.
 * Remember to apply any desired
   [middleware](https://github.com/noflo/noflo-webserver/tree/master/components)
   before passing the request/response object from webserver to any
   matcher.
+
+
+## TODO
+
+* Create components to handle asynchronous operations
