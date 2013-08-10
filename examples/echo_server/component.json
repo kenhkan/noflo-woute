@@ -1,0 +1,18 @@
+{
+  "name": "echo-server",
+  "description": "An echo server using noflo-woute",
+  "author": "Kenneth Kan <kenhkan@gmail.com>",
+  "repo": "kenhkan/echo-server",
+  "version": "0.1.0",
+  "keywords": [
+  ],
+  "dependencies": {
+    "noflo/noflo": "*"
+  },
+  "scripts": [
+    "index.js"
+  ],
+  "json": [
+    "component.json"
+  ]
+}
