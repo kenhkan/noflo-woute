@@ -36,7 +36,7 @@ describe 'ToGroups component', ->
           body: 'some body'
 
     it 'converts the incoming request/response object into five distinct groups', (done) ->
-      expectedGroups = ['url', 'headers', 'query', 'body', 'reqres']
+      expectedGroups = ['url', 'headers', 'query', 'body', 'request']
       currentGroup = null
       request =
         res:

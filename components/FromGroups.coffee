@@ -4,7 +4,7 @@ noflo = require 'noflo'
 
 class FromGroups extends noflo.Component
   constructor: ->
-    @parts = ['status', 'headers', 'body', 'reqres']
+    @parts = ['status', 'headers', 'body', 'request']
 
     @inPorts =
       in: new noflo.Port 'object'
@@ -14,7 +14,7 @@ class FromGroups extends noflo.Component
     @inPorts.in.on 'connect', =>
       @status = 200
       @group = null
-      @reqres = null
+      @request = null
       @headers = {}
       @body = ''
 
@@ -45,12 +45,12 @@ class FromGroups extends noflo.Component
           _.extend @headers, data
         when 'body'
           @body += data
-        when 'reqres'
-          @reqres = data
+        when 'request'
+          @request = data
 
   flush: ->
-    @reqres.res.writeHead @status, @headers
-    @reqres.res.write @body
-    @outPorts.out.send @reqres
+    @request.res.writeHead @status, @headers
+    @request.res.write @body
+    @outPorts.out.send @request
 
 exports.getComponent = -> new FromGroups

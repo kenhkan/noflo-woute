@@ -13,12 +13,12 @@ describe 'FromPorts component', ->
     globals.status = noflo.internalSocket.createSocket()
     globals.headers = noflo.internalSocket.createSocket()
     globals.body = noflo.internalSocket.createSocket()
-    globals.reqres = noflo.internalSocket.createSocket()
+    globals.request = noflo.internalSocket.createSocket()
     globals.out = noflo.internalSocket.createSocket()
     globals.c.inPorts.status.attach globals.status
     globals.c.inPorts.headers.attach globals.headers
     globals.c.inPorts.body.attach globals.body
-    globals.c.inPorts.reqres.attach globals.reqres
+    globals.c.inPorts.request.attach globals.request
     globals.c.outPorts.out.attach globals.out
 
   describe 'when instantiated', ->
@@ -26,7 +26,7 @@ describe 'FromPorts component', ->
       chai.expect(globals.c.inPorts.status).to.be.an 'object'
       chai.expect(globals.c.inPorts.headers).to.be.an 'object'
       chai.expect(globals.c.inPorts.body).to.be.an 'object'
-      chai.expect(globals.c.inPorts.reqres).to.be.an 'object'
+      chai.expect(globals.c.inPorts.request).to.be.an 'object'
     it 'should have an output port', ->
       chai.expect(globals.c.outPorts.out).to.be.an 'object'
 
@@ -56,9 +56,9 @@ describe 'FromPorts component', ->
 
       globals.status.connect()
       globals.status.send '404'
-      globals.reqres.connect()
-      globals.reqres.send globals.request
-      globals.reqres.disconnect()
+      globals.request.connect()
+      globals.request.send globals.request
+      globals.request.disconnect()
       globals.status.disconnect()
 
     it 'applies headers', (done) ->
@@ -73,9 +73,9 @@ describe 'FromPorts component', ->
         'x-backend': 'noflo'
       globals.headers.send
         'x-frontend': 'browser'
-      globals.reqres.connect()
-      globals.reqres.send globals.request
-      globals.reqres.disconnect()
+      globals.request.connect()
+      globals.request.send globals.request
+      globals.request.disconnect()
       globals.headers.disconnect()
 
     it 'applies body', (done) ->
@@ -86,7 +86,7 @@ describe 'FromPorts component', ->
       globals.body.connect()
       globals.body.send 'some'
       globals.body.send 'body'
-      globals.reqres.connect()
-      globals.reqres.send globals.request
-      globals.reqres.disconnect()
+      globals.request.connect()
+      globals.request.send globals.request
+      globals.request.disconnect()
       globals.body.disconnect()

@@ -44,7 +44,7 @@ class ToGroups extends noflo.Component
       @outPorts.out.send body
       @outPorts.out.endGroup()
 
-      @outPorts.out.beginGroup 'reqres'
+      @outPorts.out.beginGroup 'request'
       @outPorts.out.send data
       @outPorts.out.endGroup()
 

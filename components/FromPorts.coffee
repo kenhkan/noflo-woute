@@ -10,11 +10,11 @@ class FromPorts extends noflo.Component
       status: new noflo.Port 'string'
       headers: new noflo.Port 'object'
       body: new noflo.Port 'string'
-      reqres: new noflo.Port 'object'
+      request: new noflo.Port 'object'
     @outPorts =
       out: new noflo.Port 'object'
 
-    @inPorts.reqres.on 'begingroup', (group) =>
+    @inPorts.request.on 'begingroup', (group) =>
       @groups.push group
 
     @inPorts.status.on 'data', (@status) =>
@@ -22,21 +22,21 @@ class FromPorts extends noflo.Component
       _.extend @headers, headers
     @inPorts.body.on 'data', (body) =>
       @body += body
-    @inPorts.reqres.on 'data', (@reqres) =>
+    @inPorts.request.on 'data', (@request) =>
 
     @inPorts.status.on 'disconnect', => @flush()
     @inPorts.headers.on 'disconnect', => @flush()
     @inPorts.body.on 'disconnect', => @flush()
-    @inPorts.reqres.on 'disconnect', => @flush()
+    @inPorts.request.on 'disconnect', => @flush()
 
   flush: ->
-    return unless @reqres
+    return unless @request
 
-    @reqres.res.writeHead @status, @headers
-    @reqres.res.write @body
+    @request.res.writeHead @status, @headers
+    @request.res.write @body
 
     @outPorts.out.beginGroup group for group in @groups
-    @outPorts.out.send @reqres
+    @outPorts.out.send @request
     @outPorts.out.endGroup() for group in @groups
     @outPorts.out.disconnect()
 
@@ -47,6 +47,6 @@ class FromPorts extends noflo.Component
     @status = 200
     @headers = {}
     @body = ''
-    @reqres = null
+    @request = null
 
 exports.getComponent = -> new FromPorts

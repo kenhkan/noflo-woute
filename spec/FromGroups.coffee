@@ -49,9 +49,9 @@ describe 'FromGroups component', ->
       globals.in.beginGroup 'status'
       globals.in.send '404'
       globals.in.endGroup 'status'
-      globals.in.beginGroup 'reqres'
+      globals.in.beginGroup 'request'
       globals.in.send globals.request
-      globals.in.endGroup 'reqres'
+      globals.in.endGroup 'request'
       globals.in.disconnect()
 
     it 'applies headers', (done) ->
@@ -68,9 +68,9 @@ describe 'FromGroups component', ->
       globals.in.send
         'x-frontend': 'browser'
       globals.in.endGroup 'headers'
-      globals.in.beginGroup 'reqres'
+      globals.in.beginGroup 'request'
       globals.in.send globals.request
-      globals.in.endGroup 'reqres'
+      globals.in.endGroup 'request'
       globals.in.disconnect()
 
     it 'applies body', (done) ->
@@ -83,9 +83,9 @@ describe 'FromGroups component', ->
       globals.in.send 'some'
       globals.in.send 'body'
       globals.in.endGroup 'body'
-      globals.in.beginGroup 'reqres'
+      globals.in.beginGroup 'request'
       globals.in.send globals.request
-      globals.in.endGroup 'reqres'
+      globals.in.endGroup 'request'
       globals.in.disconnect()
 
     it 'does not need to receive request/response object last if it is within the same connection', (done) ->
@@ -94,9 +94,9 @@ describe 'FromGroups component', ->
         done()
 
       globals.in.connect()
-      globals.in.beginGroup 'reqres'
+      globals.in.beginGroup 'request'
       globals.in.send globals.request
-      globals.in.endGroup 'reqres'
+      globals.in.endGroup 'request'
       globals.in.beginGroup 'body'
       globals.in.send 'some'
       globals.in.send 'body'

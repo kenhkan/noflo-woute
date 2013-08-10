@@ -81,7 +81,7 @@ Both adapters break the request/response object into these areas:
 * `headers`: the HTTP headers broken down into pairs
 * `query`: the query string broken down into pairs
 * `body`: the body passed through as-is (i.e. always a string)
-* `reqres`: the request/response object
+* `request`: the request/response object
 
 `ToGroups` converts the outcoming request/response object into the
 listed areas grouped by the names. Groups are constructed and sent in
@@ -125,7 +125,7 @@ The components take these types of data packets:
 * status: the status code to set
 * headers: the response headers to be sent back
 * body: the body to be sent back
-* reqres: the request/response object
+* request: the request/response object
 
 ### Which way is best?
 

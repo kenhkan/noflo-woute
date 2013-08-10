@@ -10,7 +10,7 @@ class ToPorts extends noflo.Component
       headers: new noflo.Port 'object'
       query: new noflo.Port 'object'
       body: new noflo.Port 'object'
-      reqres: new noflo.Port 'object'
+      request: new noflo.Port 'object'
 
     @inPorts.in.on 'begingroup', (group) =>
       @sendToAll 'beginGroup', group
@@ -35,7 +35,7 @@ class ToPorts extends noflo.Component
       @outPorts.headers.send headers if @outPorts.headers.isAttached()
       @outPorts.query.send query if @outPorts.query.isAttached()
       @outPorts.body.send body if @outPorts.body.isAttached()
-      @outPorts.reqres.send data if @outPorts.reqres.isAttached()
+      @outPorts.request.send data if @outPorts.request.isAttached()
 
   sendToAll: (operation, packet) ->
     for name, port of @outPorts
