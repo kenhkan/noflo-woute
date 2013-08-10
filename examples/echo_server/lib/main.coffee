@@ -19,13 +19,19 @@ fbp = """
   # The order of the matchers here determins which path gets priority in
   # matching
 
-  BodyParser() OUT -> IN MatchAllPosts() FAIL -> IN MatchEcho() FAIL -> IN MatchNoop() FAIL -> IN MatchMissing(woute/Match) FAIL -> IN ThisIsNeverReached(core/Output)
+  BodyParser() OUT -> IN MatchEcho() FAIL -> IN MatchNoop() FAIL -> IN MatchAllPosts() FAIL -> IN MatchMissing(woute/Match) FAIL -> IN ThisIsNeverReached(core/Output)
 
-  # Example of showing and returning the body of a POST request
+  # Example of printing the body of a POST request
 
   MatchAllPosts() OUT -> IN PostsToPorts(woute/ToPorts)
-  PostsToPorts() BODY -> IN PrintPostsBody(core/Output) OUT -> IN JsonifyPostsBody(strings/Jsonify) OUT -> BODY PostsFromPorts(woute/FromPorts)
-  PostsToPorts() REQRES -> REQRES PostsFromPorts() OUT -> IN Output()
+  PostsToPorts() BODY -> IN PrintPostsBody(core/Output)
+  PostsToPorts() REQRES -> REQRES PostsFromPorts(woute/FromPorts) OUT -> IN Output()
+
+  # Example of echoing incoming HTTP request
+
+  MatchEcho() OUT -> IN EchoToPorts(woute/ToPorts)
+  EchoToPorts() BODY -> IN JsonifyBody(strings/Jsonify) OUT -> BODY EchoFromPorts(woute/FromPorts)
+  EchoToPorts() REQRES -> REQRES EchoFromPorts() OUT -> IN Output()
 
   # Return with "Not Found" otherwise
 
