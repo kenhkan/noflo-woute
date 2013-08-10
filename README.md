@@ -1,4 +1,4 @@
-# Routing web requests based on the request's URL [![Build Status](https://secure.travis-ci.org/kenhkan/noflo-woute.png?branch=master)](https://travis-ci.org/kenhkan/noflo-woute)
+# Woute: A Web Request Router [![Build Status](https://secure.travis-ci.org/kenhkan/noflo-woute.png?branch=master)](https://travis-ci.org/kenhkan/noflo-woute)
 
 The most natural way to route web requests is to use matching rules, not
 unlike [Sinatra](http://www.sinatrarb.com/) in Ruby and
