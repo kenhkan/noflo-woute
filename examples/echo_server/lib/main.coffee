@@ -14,12 +14,12 @@ fbp = """
   # Match by URL segments
 
   '/echo' -> MATCH MatchEcho(woute/Match)
-  '/noop' -> MATCH MatchNoop(woute/Match)
+  '/empty-body' -> MATCH MatchEmptyBody(woute/Match)
 
   # The order of the matchers here determins which path gets priority in
   # matching
 
-  BodyParser() OUT -> IN MatchEcho() FAIL -> IN MatchNoop() FAIL -> IN MatchAllPosts() FAIL -> IN MatchMissing(woute/Match) FAIL -> IN ThisIsNeverReached(core/Output)
+  BodyParser() OUT -> IN MatchEcho() FAIL -> IN MatchEmptyBody() FAIL -> IN MatchAllPosts() FAIL -> IN MatchMissing(woute/Match) FAIL -> IN ThisIsNeverReached(core/Output)
 
   # Example of printing the body of a POST request
 
@@ -32,6 +32,11 @@ fbp = """
   MatchEcho() OUT -> IN EchoToPorts(woute/ToPorts)
   EchoToPorts() BODY -> IN JsonifyBody(strings/Jsonify) OUT -> BODY EchoFromPorts(woute/FromPorts)
   EchoToPorts() REQRES -> REQRES EchoFromPorts() OUT -> IN Output()
+
+  # Example of use case of FromGroups/ToGroups: for components that
+  # directly act on the incoming request
+
+  MatchEmptyBody() OUT -> IN EchoToGroups(woute/ToGroups) OUT -> IN EmptyBody(echo/EmptyBody) OUT -> IN EchoFromGroups(woute/FromGroups) OUT -> IN Output()
 
   # Return with "Not Found" otherwise
 

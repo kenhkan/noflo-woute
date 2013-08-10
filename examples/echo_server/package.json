@@ -33,5 +33,10 @@
   "keywords": [],
   "scripts": {
     "main": "./node_modules/.bin/coffee ./lib/main.coffee"
+  },
+  "noflo": {
+    "components": {
+      "EmptyBody": "./components/EmptyBody.coffee"
+    }
   }
 }
