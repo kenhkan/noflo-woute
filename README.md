@@ -6,8 +6,7 @@ unlike [Sinatra](http://www.sinatrarb.com/) in Ruby and
 
 However, in NoFlo, it's a network of blackboxes you connect to make a
 program. The intuitive way is to connect incoming requests to a series
-of matchers; failure to match runs onto the next matcher until there is
-no match, in which case a "404" box is sent the request.
+of matchers; failure to match forwards to the next matcher.
 
 When successful matches occur, the request is sent to wherever the
 programmer wants, which hopefully produces some result to be sent to a
@@ -68,7 +67,7 @@ Simply connect some matchers together like the abstract example shown
 above.
 
 
-## Adapters
+## More Advanced Usage: Adapters
 
 Matchers are agnostic to the actual request/response, meaning that
 whoever handling a successfully matched case is handed the same thing
