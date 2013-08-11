@@ -197,8 +197,3 @@ File not found:
     Connection: keep-alive
 
 To look at how these work, read the [FBP code](https://github.com/kenhkan/noflo-woute/blob/master/examples/echo_server/graphs/main.fbp).
-
-
-## TODO
-
-* Create components to handle asynchronous operations
