@@ -1,4 +1,4 @@
-# Woute: A Web Request Router [![Build Status](https://secure.travis-ci.org/kenhkan/noflo-woute.png?branch=master)](https://travis-ci.org/kenhkan/noflo-woute)
+# Woute: A Web Request Router <br/>[![Build Status](https://secure.travis-ci.org/kenhkan/noflo-woute.png?branch=master)](https://travis-ci.org/kenhkan/noflo-woute) [![Dependency Status](https://gemnasium.com/kenhkan/noflo-woute.png)](https://gemnasium.com/kenhkan/noflo-woute) [![NPM version](https://badge.fury.io/js/noflo-woute.png)](http://badge.fury.io/js/noflo-woute) [![Stories in Ready](https://badge.waffle.io/kenhkan/noflo-woute.png)](http://waffle.io/kenhkan/noflo-woute)
 
 The most natural way to route web requests is to use matching rules, not
 unlike [Sinatra](http://www.sinatrarb.com/) in Ruby and
