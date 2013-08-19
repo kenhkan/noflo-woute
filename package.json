@@ -10,7 +10,7 @@
     "url"
   ],
   "author": "Kenneth Kan <kenhkan@gmail.com>",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "licenses": [
     {
       "type": "MIT",
@@ -27,7 +27,7 @@
   "dependencies": {
     "noflo": "~0.4.0",
     "underscore": "~1.5.1",
-    "noflo-webserver": "0.0.2",
+    "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master",
     "noflo-core": "~0.1.1"
   },
   "devDependencies": {

@@ -11,7 +11,7 @@
     "noflo": "~0.4.0",
     "coffee-script": "~1.6.3",
     "noflo-woute": "~0.1.0",
-    "noflo-webserver": "https://github.com/noflo/noflo-webserver/tarball/master",
+    "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master",
     "noflo-core": "~0.1.1",
     "noflo-strings": "~0.1.1"
   },
