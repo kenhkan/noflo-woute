@@ -53,5 +53,8 @@
       "ToPorts": "./components/ToPorts.coffee",
       "ToGroups": "./components/ToGroups.coffee"
     }
+  },
+  "scripts": {
+    "test": "grunt test"
   }
 }
