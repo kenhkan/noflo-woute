@@ -27,7 +27,7 @@
   "dependencies": {
     "noflo": "~0.4.0",
     "underscore": "~1.5.1",
-    "noflo-webserver": "https://github.com/kenhkan/noflo-webserver/tarball/master",
+    "noflo-webserver": "~0.0.3",
     "noflo-core": "~0.1.1"
   },
   "devDependencies": {
